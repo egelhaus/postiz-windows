@@ -1,0 +1,218 @@
+<Window x:Class="PostizInstaller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Postiz Installer" 
+        Height="500" 
+        Width="600"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#007BFF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0056B3"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#6C757D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#6C757D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5A6268"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#ADB5BD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="#F8F9FA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#2C3E50" Height="80">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Postiz Installer" 
+                          FontSize="24" 
+                          FontWeight="Bold" 
+                          Foreground="White" 
+                          HorizontalAlignment="Center"/>
+                <TextBlock Text="Social Media Management Platform" 
+                          FontSize="12" 
+                          Foreground="#BDC3C7" 
+                          HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="40">
+            <StackPanel>
+                <!-- Welcome message -->
+                <Border Background="White" 
+                       BorderBrush="#DEE2E6" 
+                       BorderThickness="1" 
+                       CornerRadius="5" 
+                       Padding="20" 
+                       Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Welcome to Postiz Setup" 
+                                  FontSize="18" 
+                                  FontWeight="SemiBold" 
+                                  Margin="0,0,0,10"
+                                  Foreground="#2C3E50"/>
+                        <TextBlock Text="This installer will install two applications on your computer:" 
+                                  FontSize="12" 
+                                  Margin="0,0,0,10"
+                                  TextWrapping="Wrap"/>
+                        
+                        <StackPanel Margin="20,0,0,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="🚀" FontSize="16" Margin="0,0,10,0"/>
+                                <StackPanel>
+                                    <TextBlock Text="Postiz" FontWeight="SemiBold" FontSize="12"/>
+                                    <TextBlock Text="Main application for social media management" FontSize="11" Foreground="#6C757D"/>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="⚙️" FontSize="16" Margin="0,0,10,0"/>
+                                <StackPanel>
+                                    <TextBlock Text="Postiz Configurator" FontWeight="SemiBold" FontSize="12"/>
+                                    <TextBlock Text="Configuration tool for Docker setup and social media providers" FontSize="11" Foreground="#6C757D"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Installation options -->
+                <Border Background="White" 
+                       BorderBrush="#DEE2E6" 
+                       BorderThickness="1" 
+                       CornerRadius="5" 
+                       Padding="20" 
+                       Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Installation Directory" 
+                                  FontSize="14" 
+                                  FontWeight="SemiBold" 
+                                  Margin="0,0,0,10"
+                                  Foreground="#2C3E50"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBox Name="InstallPathTextBox" 
+                                    Grid.Column="0"
+                                    Height="35" 
+                                    Padding="10,8" 
+                                    FontSize="12"
+                                    IsReadOnly="True"
+                                    Background="#F8F9FA"/>
+                            
+                            <Button Name="BrowseButton" 
+                                   Grid.Column="1"
+                                   Content="Browse..." 
+                                   Width="80" 
+                                   Height="35" 
+                                   Margin="10,0,0,0"
+                                   Click="BrowseButton_Click"
+                                   Style="{StaticResource SecondaryButtonStyle}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Requirements -->
+                <Border Background="#FFF3CD" 
+                       BorderBrush="#FFEAA7" 
+                       BorderThickness="1" 
+                       CornerRadius="5" 
+                       Padding="15" 
+                       Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="⚠️ Requirements" 
+                                  FontWeight="SemiBold" 
+                                  FontSize="12" 
+                                  Margin="0,0,0,5"/>
+                        <TextBlock Text="To use Postiz, you will need Docker Desktop installed on your system. The configurator will guide you through the setup process after installation." 
+                                  FontSize="11" 
+                                  TextWrapping="Wrap" 
+                                  Foreground="#856404"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Status -->
+                <Border Background="White" 
+                       BorderBrush="#DEE2E6" 
+                       BorderThickness="1" 
+                       CornerRadius="5" 
+                       Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Installation Status" 
+                                  FontSize="14" 
+                                  FontWeight="SemiBold" 
+                                  Margin="0,0,0,10"
+                                  Foreground="#2C3E50"/>
+                        
+                        <ProgressBar Name="ProgressBar" 
+                                    Height="10" 
+                                    IsIndeterminate="True" 
+                                    Visibility="Collapsed" 
+                                    Margin="0,0,0,10"/>
+                        
+                        <TextBlock Name="StatusText" 
+                                  Text="Ready to install" 
+                                  FontSize="12" 
+                                  Foreground="#6C757D"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Bottom buttons -->
+        <Border Grid.Row="2" Background="#F1F3F4" BorderBrush="#DEE2E6" BorderThickness="0,1,0,0" Height="60">
+            <StackPanel Orientation="Horizontal" 
+                       HorizontalAlignment="Right" 
+                       VerticalAlignment="Center" 
+                       Margin="40,0">
+                <Button Name="CancelButton" 
+                       Content="Cancel" 
+                       Width="100" 
+                       Height="35" 
+                       Margin="0,0,10,0"
+                       Click="CancelButton_Click"
+                       Style="{StaticResource SecondaryButtonStyle}"/>
+                <Button Name="InstallButton" 
+                       Content="Install" 
+                       Width="100" 
+                       Height="35"
+                       Click="InstallButton_Click"
+                       Style="{StaticResource PrimaryButtonStyle}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

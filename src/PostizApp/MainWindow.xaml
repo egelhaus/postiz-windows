@@ -1,0 +1,114 @@
+<Window x:Class="PostizApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Postiz" 
+        Height="800" 
+        Width="1200"
+        MinHeight="600"
+        MinWidth="800"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Top toolbar -->
+        <Border Grid.Row="0" Background="#2C3E50" Height="40">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Left buttons -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="10,0">
+                    <Button Name="HomeButton" 
+                            Content="🏠" 
+                            Width="30" 
+                            Height="30" 
+                            Margin="0,0,5,0"
+                            ToolTip="Home"
+                            Click="HomeButton_Click"
+                            Style="{StaticResource ToolbarButtonStyle}"/>
+                    <Button Name="RefreshButton" 
+                            Content="🔄" 
+                            Width="30" 
+                            Height="30" 
+                            Margin="0,0,5,0"
+                            ToolTip="Refresh"
+                            Click="RefreshButton_Click"
+                            Style="{StaticResource ToolbarButtonStyle}"/>
+                </StackPanel>
+                
+                <!-- Center title -->
+                <TextBlock Grid.Column="1" 
+                          Text="Postiz" 
+                          FontSize="16" 
+                          FontWeight="Bold" 
+                          Foreground="White" 
+                          VerticalAlignment="Center" 
+                          HorizontalAlignment="Center"/>
+                
+                <!-- Right buttons -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="10,0">
+                    <Button Name="ConfigButton" 
+                            Content="⚙️" 
+                            Width="30" 
+                            Height="30"
+                            ToolTip="Open Configurator"
+                            Click="ConfigButton_Click"
+                            Style="{StaticResource ToolbarButtonStyle}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <!-- WebView2 will be added here programmatically -->
+        
+        <!-- Status bar -->
+        <Border Grid.Row="2" Background="#34495E" Height="25">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Name="StatusText" 
+                          Grid.Column="0"
+                          Text="Initializing..." 
+                          Foreground="White" 
+                          VerticalAlignment="Center" 
+                          Margin="10,0"/>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0">
+                    <ProgressBar Name="LoadingIndicator" 
+                                Width="100" 
+                                Height="15" 
+                                IsIndeterminate="True" 
+                                Visibility="Collapsed"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+    
+    <Window.Resources>
+        <Style x:Key="ToolbarButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3498DB"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+</Window>

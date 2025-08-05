@@ -1,0 +1,107 @@
+<Window x:Class="PostizConfigurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Postiz Configurator" 
+        Height="600" 
+        Width="800"
+        MinHeight="500"
+        MinWidth="600"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#21618C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="UpdateButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#28A745"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#218838"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#1E7E34"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#6C757D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Top menu bar -->
+        <Border Grid.Row="0" Background="#34495E" Height="50">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Menu buttons -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="20,0">
+                    <Button Name="InitialSetupButton" 
+                            Content="Initial Setup" 
+                            Width="120" 
+                            Height="35" 
+                            Margin="0,0,10,0"
+                            Click="InitialSetupButton_Click"
+                            Style="{StaticResource MenuButtonStyle}"/>
+                    <Button Name="ProvidersButton" 
+                            Content="Social Media" 
+                            Width="120" 
+                            Height="35" 
+                            Margin="0,0,10,0"
+                            Click="ProvidersButton_Click"
+                            Style="{StaticResource MenuButtonStyle}"/>
+                    <Button Name="UpdateButton" 
+                            Content="Update" 
+                            Width="100" 
+                            Height="35" 
+                            Margin="0,0,10,0"
+                            Click="UpdateButton_Click"
+                            Style="{StaticResource UpdateButtonStyle}"/>
+                </StackPanel>
+                
+                <!-- Exit button -->
+                <Button Grid.Column="1" 
+                        Name="ExitButton" 
+                        Content="Exit" 
+                        Width="80" 
+                        Height="35" 
+                        Margin="20,0"
+                        Click="ExitButton_Click"
+                        Style="{StaticResource MenuButtonStyle}"/>
+            </Grid>
+        </Border>
+        
+        <!-- Content frame -->
+        <Frame Grid.Row="1" 
+               Name="ContentFrame" 
+               NavigationUIVisibility="Hidden"
+               Background="White"/>
+    </Grid>
+</Window>
